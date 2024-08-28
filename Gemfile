@@ -65,3 +65,5 @@ end
 gem "sidekiq", "~> 7.3"
 
 gem "cssbundling-rails", "~> 1.4"
+
+gem "active_storage_validations", "~> 1.1"
