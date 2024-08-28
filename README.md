@@ -1,12 +1,12 @@
 # README
 usage: 
-usage: 
 - `bin/dev`
 - go to: [localhost:3000/boards/new](localhost:3000/boards/new)
 - inside `spec/fixtures/files` you can find some sample files with correct format
 
 ---
 I created a kanban with github project to detail and manage the work load. you can access [here](https://github.com/users/yurimello/projects/4/views/1)
+
 I added a CI with github action to ensure tests are passing before any merge
 
 Some decisions i made:
@@ -16,23 +16,29 @@ Some decisions i made:
 
 ---
 
-* Ruby version
+#### Ruby version
+
 3.2.2
 
-* System dependencies
+#### System dependencies
+
 redis
 postgresql
 
-* Database creation
+#### Database creation
+
 rails db:create
 
-* Database initialization
+#### Database initialization
+
 rails db:migrate
 
-* How to run the test suite
+#### How to run the test suite
+
 rspec
 
-* Services (job queues, cache servers, search engines, etc.)
+#### Services (job queues, cache servers, search engines, etc.)
+
 it uses sidekiq to generate next states and action cable to update frontend state
 it uses active storage to store csv file
 
