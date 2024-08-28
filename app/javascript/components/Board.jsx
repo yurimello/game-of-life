@@ -57,12 +57,14 @@ const Board = ({boardId}) => {
 
 
   if (loading) return <div>Loading...</div>;
-  if (error) return <div>{error}</div>;
 
   return (
     <>
-      <Notification room={boardId} callback={setData}/>
+      <Notification room={boardId} callback={setData} errorCallback={setError}/>
       <p>States Away: {board.statesAway}</p>
+      {error && (
+        <p>{error}</p>
+      )}
       <div className="grid-container" style={gridStyle}>
         {grid.map((row, rowIdx) => (
           <div key={rowIdx}>

@@ -8,6 +8,7 @@ class GenerateStateService < BaseService
   end
 
   def call
+    return self if empty_cordinates?
     return self unless validate_coordinates(@coordinates)
 
     new_state = []
@@ -27,6 +28,12 @@ class GenerateStateService < BaseService
   end
 
   private
+
+  def empty_cordinates?
+    return false unless @coordinates.empty?
+
+    @errors << 'There is no Population'
+  end
 
   def neighbors_offsets
     @neighbors_offsets ||= [

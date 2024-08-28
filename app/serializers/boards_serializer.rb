@@ -7,11 +7,11 @@ class BoardsSerializer
   end
 
   attribute :max_x_coords do |object|
-    object.current_state.max_x_coords + 5
+    object.current_state.max_x_coords.to_i + 5
   end
 
   attribute :max_y_coords do |object|
-    object.current_state.max_y_coords + 5
+    object.current_state.max_y_coords.to_i + 5
   end
 
   attribute :states_away do |object|
