@@ -1,3 +1,3 @@
-class GameBoardsController < ApplicationController
+class BoardsController < ApplicationController
   def index;end
 end
