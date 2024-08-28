@@ -1,1 +1,5 @@
-<div id="root"></div>
+<ul>
+  <% @boards.each do |board| %>
+    <li><%= board.id %></li>
+  <% end %>
+</ul>

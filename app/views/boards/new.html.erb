@@ -1,0 +1,5 @@
+<%= form_with model: @board do |form| %>
+  <%= form.label :csv %>
+  <%= form.file_field :csv %>
+  <%= form.submit 'Upload Board' %>
+<% end %>
