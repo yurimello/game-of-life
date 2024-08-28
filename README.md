@@ -8,6 +8,8 @@ Some decisions i made:
 - Because sidekiq most of the comunications between grid board(made with react) is made over action cable
 - i tried to cover most of the backend code with tests
 
+---
+
 * Ruby version
 3.2.2
 
