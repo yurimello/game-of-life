@@ -1,4 +1,3 @@
-require_relative './helpers/coordinates_validation'
 class BaseService
   attr_reader :errors, :response
   
