@@ -27,7 +27,7 @@ RSpec.describe Board, type: :model do
 
     context "when there are fewer than MAX_STATES board_states" do
       it "is valid" do
-        10.times { create(:board_state, board: board) }
+        7.times { create(:board_state, board: board) }
         expect(board).to be_valid
       end
     end
