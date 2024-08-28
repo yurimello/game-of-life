@@ -1,5 +1,5 @@
 class Board < ApplicationRecord
-  MAX_STATES = 50
+  MAX_STATES = 10
 
   has_many :board_states, dependent: :destroy
   has_one_attached :csv

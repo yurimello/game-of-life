@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Notification from './Notification'
 import NextStateButton from './NextStateButton'
+import FinalStateButton from './FinalStateButton'
 import './Board.css'; // Import CSS for styling
 
 const Board = ({boardId}) => {
@@ -77,7 +78,9 @@ const Board = ({boardId}) => {
             </div>
         ))}
       </div>
+      
       <NextStateButton boardId={boardId} isDisabled={buttonDisabled} setButtonDisabled={setButtonDisabled}/>
+      <FinalStateButton boardId={boardId}/>
     </>
   );
 };
