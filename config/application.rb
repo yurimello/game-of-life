@@ -33,5 +33,8 @@ module GameOfLife
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+    config.eager_load_paths += %W(
+      #{Rails.root}/app/services/helpers
+    )
   end
 end

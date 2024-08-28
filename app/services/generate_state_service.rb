@@ -1,4 +1,6 @@
 class GenerateStateService < BaseService
+  include CoordinatesValidation
+
   def initialize(coordinates)
     @coordinates = coordinates
     @response = {state: []}
@@ -6,8 +8,7 @@ class GenerateStateService < BaseService
   end
 
   def call
-    valid_cordinates = validate_coordinates
-    return self unless valid_cordinates
+    return self unless validate_coordinates(@coordinates)
 
     new_state = []
     (0..x_max).each do |x|
@@ -57,14 +58,5 @@ class GenerateStateService < BaseService
     @y_max ||= @coordinates.map(&:last).max
   end
   
-  def validate_coordinates
-    if @coordinates.flatten.any?(&:negative?)
-      @errors << 'only positive numbers are allowed' 
-      return false
-    end
-    true 
-  rescue NoMethodError
-    @errors << 'only positive numbers are allowed' 
-    return false
-  end
+  
 end
