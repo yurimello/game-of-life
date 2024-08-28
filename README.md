@@ -1,5 +1,11 @@
 # README
+usage: 
+usage: 
+- `bin/dev`
+- go to: [localhost:3000/boards/new](localhost:3000/boards/new)
+- inside `spec/fixtures/files` you can find some sample files with correct format
 
+---
 I created a kanban with github project to detail and manage the work load. you can access [here](https://github.com/users/yurimello/projects/4/views/1)
 I added a CI with github action to ensure tests are passing before any merge
 
@@ -28,5 +34,7 @@ rspec
 
 * Services (job queues, cache servers, search engines, etc.)
 it uses sidekiq to generate next states and action cable to update frontend state
+it uses active storage to store csv file
+
 
 
