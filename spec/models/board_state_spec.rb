@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe BoardState, type: :model do
-  let(:board) { create(:board) }
+  let(:board) { create(:board, :valid_csv) }
 
   context "validations" do
     it "is valid with valid coordinates" do
