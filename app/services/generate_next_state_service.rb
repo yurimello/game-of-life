@@ -13,8 +13,9 @@ class GenerateNextStateService < BaseService
     end
     new_coordinates = new_state_service.response[:state]
     BoardState.create(coordinates: new_coordinates, board: @board)
-    @response = {board: @board.reload}
-    
+    @board.reload # it must reload relationships
+    @response = {board: @board}
+    ActionCable.server.broadcast "notifications_#{@board.id}", {board: BoardsSerializer.new(@board)}
     self
   end
 end

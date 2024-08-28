@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Notification from './Notification'
+import NextStateButton from './NextStateButton'
 import './Board.css'; // Import CSS for styling
 
 const Board = ({boardId}) => {
@@ -11,13 +12,15 @@ const Board = ({boardId}) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [grid, setGrid] = useState([[]]);
+  const [ buttonDisabled, setButtonDisabled ] = useState(false)
   
   const generateGrid = (rows, cols) => {
     return Array(rows).fill(null).map(() => Array(cols).fill(null))
   }
 
-  const isAlive = (y,x) => {
-    return !!board.coordinates.find(item => item.toString() == [x,y])
+  const isAlive = (rowId,colId) => {
+    
+    return !!board.coordinates.find(item => item.toString() == [colId,rowId])
   }
 
   const setData = (data) => {
@@ -26,6 +29,7 @@ const Board = ({boardId}) => {
     setCols(data.maxXCoords)
     setGrid(generateGrid(data.maxYCoords, data.maxXCoords))
     setLoading(false);
+    setButtonDisabled(false)
   }
 
   const gridStyle = {
@@ -57,7 +61,7 @@ const Board = ({boardId}) => {
 
   return (
     <>
-      <Notification room={boardId} />
+      <Notification room={boardId} callback={setData}/>
       <p>States Away: {board.statesAway}</p>
       <div className="grid-container" style={gridStyle}>
         {grid.map((row, rowIdx) => (
@@ -71,6 +75,7 @@ const Board = ({boardId}) => {
             </div>
         ))}
       </div>
+      <NextStateButton boardId={boardId} isDisabled={buttonDisabled} setButtonDisabled={setButtonDisabled}/>
     </>
   );
 };
