@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   resources :boards
   namespace :api do
-    resources :boards, only: [:show]
+    resources :boards, only: [:show, :update]
   end
   mount ActionCable.server => '/cable'
   # get '/boards/:id/fetch', to: 'boards#fetch_data', as: 'fetch_board'
