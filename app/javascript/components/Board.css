@@ -1,0 +1,14 @@
+.grid-cell {
+  width: 30px;
+  height: 30px;
+  border: 1px solid #918f8f;
+  background-color: #000; /* Default cell background color */
+}
+
+.grid-cell.alive {
+  background-color: #fff; /* Cell background color for alive state */
+}
+
+.grid-cell.dead {
+  background-color: #000; /* Cell background color for dead state */
+}

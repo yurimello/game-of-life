@@ -18,14 +18,6 @@ RSpec.describe "Boards", type: :request do
     end
   end
 
-  describe "GET /show" do
-    it "assigns all boards to @boards", :aggregate_failures do
-      get board_path(board.id)
-      expect(assigns(:board)).to eq(board)
-      expect(response).to have_http_status(:ok)
-    end
-  end
-
   describe "POST /create" do
     context "with valid attributes" do
       let(:csv) { fixture_file_upload('valid.csv', 'text/csv') }

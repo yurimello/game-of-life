@@ -7,9 +7,7 @@ class BoardsController < ApplicationController
     @board = Board.new
   end
 
-  def show
-    @board = Board.find(params[:id])
-  end
+  def show; end
 
   def create
     @board = Board.new(board_params)
