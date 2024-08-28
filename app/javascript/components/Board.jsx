@@ -1,7 +1,8 @@
 // app/javascript/components/App.js
-import './Board.css'; // Import CSS for styling
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import Notification from './Notification'
+import './Board.css'; // Import CSS for styling
 
 const Board = ({boardId}) => {
   const [board, setBoard] = useState({});
@@ -15,7 +16,7 @@ const Board = ({boardId}) => {
     return Array(rows).fill(null).map(() => Array(cols).fill(null))
   }
 
-  const isAlive = (x, y) => {
+  const isAlive = (y,x) => {
     return !!board.coordinates.find(item => item.toString() == [x,y])
   }
 
@@ -24,6 +25,7 @@ const Board = ({boardId}) => {
     setRows(data.maxYCoords)
     setCols(data.maxXCoords)
     setGrid(generateGrid(data.maxYCoords, data.maxXCoords))
+    setLoading(false);
   }
 
   const gridStyle = {
@@ -40,7 +42,6 @@ const Board = ({boardId}) => {
         const response = await axios.get(`/api/boards/${boardId}`);
         if(response.data.isProcessing) return true
         setData(response.data.data.attributes)
-        setLoading(false);
       } catch (err) {
         setError('Error fetching board data');
         setLoading(false);
@@ -56,18 +57,16 @@ const Board = ({boardId}) => {
 
   return (
     <>
+      <Notification room={boardId} />
       <p>States Away: {board.statesAway}</p>
       <div className="grid-container" style={gridStyle}>
         {grid.map((row, rowIdx) => (
           <div key={rowIdx}>
             {row.map((cell, colIdx) => (
-              <>
-              {console.log(`Row: ${rowIdx} Col: ${colIdx}`)}
               <div
-                key={colIdx}
+                key={`${rowIdx}-${colIdx}`}
                 className={`grid-cell ${isAlive(rowIdx, colIdx) ? 'alive' : 'dead'}`}
               />
-              </>
             ))}
             </div>
         ))}

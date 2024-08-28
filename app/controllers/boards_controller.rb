@@ -12,8 +12,7 @@ class BoardsController < ApplicationController
   def create
     @board = Board.new(board_params)
 
-    if @board.save
-      UploadBoardJob.perform_async(@board.id)
+    if @board.save && !BoardCsvParserService.call(@board).error?
       redirect_to @board, notice: 'CSV file uploaded successfully.'
     else
       render :new

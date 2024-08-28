@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   namespace :api do
     resources :boards, only: [:show]
   end
+  mount ActionCable.server => '/cable'
   # get '/boards/:id/fetch', to: 'boards#fetch_data', as: 'fetch_board'
   root "boards#index"
 end

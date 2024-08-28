@@ -70,3 +70,5 @@ gem "cssbundling-rails", "~> 1.4"
 gem "active_storage_validations", "~> 1.1"
 
 gem "jsonapi-serializer", "~> 2.2"
+
+gem "redis", "~> 5.3"

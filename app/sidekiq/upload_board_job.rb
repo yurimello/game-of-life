@@ -3,6 +3,8 @@ class UploadBoardJob
 
   def perform(board_id)
     board = Board.find(board_id)
-    BoardCsvParserService.call(board)
+    
+    board.reload
+    ActionCable.server.broadcast "notifications_#{board.id}", {message: 'Board created!', data: BoardsSerializer.new(board)}
   end
 end

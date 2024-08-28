@@ -13,4 +13,4 @@ document.addEventListener('DOMContentLoaded', () => {
     // Render the App component into the root
     root.render(<App />);
   }
-});
+});import "./channels"
