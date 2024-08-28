@@ -9,4 +9,10 @@ class Api::BoardsController < ApplicationController
     GenerateNextBoardStateJob.perform_async(board.id)
     render json: {generating: true}
   end
+
+  def final_states
+    board = Board.find(params[:id])
+    TravelToFinalStateJob.perform_async(board.id)
+    render json: {generating: true}
+  end
 end

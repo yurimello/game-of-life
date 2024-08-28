@@ -1,16 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import { createConsumer } from '@rails/actioncable';
 
-const Notification = ({ room, callback }) => {
+const Notification = ({ room, callback, errorCallback }) => {
 
   useEffect(() => {
     const cable = createConsumer('ws://localhost:3000/cable'); // Adjust URL as needed
     const subscription = cable.subscriptions.create(
       { channel: 'NotificationsChannel', room: room },
       {
-        received(message) {
-          // Update component state with new data
-          callback(message.board.data.attributes);
+        received(data) {
+          console.log(data)
+          if(data.message !== undefined) {
+            errorCallback(data.message)
+          }
+          else {
+            callback(data.board.data.attributes);
+          }
+          
         }
       }
     );
@@ -18,7 +24,7 @@ const Notification = ({ room, callback }) => {
     return () => {
       subscription.unsubscribe();
     };
-  }, [room, callback]);
+  }, [room, callback, errorCallback]);
 
   return (
     <></>
