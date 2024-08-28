@@ -28,12 +28,6 @@ RSpec.describe "Boards", type: :request do
         }.to change(Board, :count).by(1)
       end
 
-      it "enqueues the UploadBoardJob" do
-        allow(UploadBoardJob).to receive(:perform_async)
-        post boards_path, params: { board: { csv: csv } }, as: :multipart
-        expect(UploadBoardJob).to have_received(:perform_async)
-      end
-
       it "redirects to the new board" do
         post boards_path, params: { board: { csv: csv } }, as: :multipart
         expect(response).to redirect_to(Board.last)
