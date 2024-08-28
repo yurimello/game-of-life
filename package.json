@@ -9,6 +9,9 @@
     "build:css": "sass ./app/assets/stylesheets/application.sass.scss:./app/assets/builds/application.css --no-source-map --load-path=node_modules"
   },
   "dependencies": {
+    "@rails/actioncable": "^7.2.100",
+    "actioncable": "^5.2.8-1",
+    "axios": "^1.7.5",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "sass": "^1.77.8"
