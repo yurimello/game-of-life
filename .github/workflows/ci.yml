@@ -43,7 +43,9 @@ jobs:
         run: yarn install --pure-lockfile
       
       - name: Build assets
-        run: yarn build:css
+        run: | 
+          yarn build
+          yarn build:css
 
       - name: Create database
         run: |
