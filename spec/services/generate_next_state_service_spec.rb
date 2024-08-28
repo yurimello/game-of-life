@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe GenerateNextStateService, type: :service do
   let(:board) { create(:board) }
-  let(:current_state) { double('CurrentState', coordinates: [1, 2, 3]) }
+  let(:current_state) { double('CurrentState', coordinates: [1, 2, 3], max_x_coords: 5, max_y_coords: 5) }
 
   before do
     allow(board).to receive(:current_state).and_return(current_state)
